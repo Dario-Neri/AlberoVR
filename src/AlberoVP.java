@@ -4,10 +4,10 @@ import java.util.*;
 
 public class AlberoVP<T> implements Albero<T> {
 
-    private NodoVP<T> radice = null;                       //memoriziamo la radice per convenienza
-    private List<NodoVP<T>> nodi = new ArrayList<>();      //lista nodi
-    private List<NodoVP<T>> padri = new ArrayList<>();     //lista padri
-    private Map<T, Boolean> valoriInAlbero = new HashMap<>();
+    private NodoVP<T> radice = null;                         //memoriziamo la radice per convenienza
+    private List<NodoVP<T>> nodi = new ArrayList<>();        //lista nodi
+    private List<NodoVP<T>> padri = new ArrayList<>();       //lista padri
+    private Map<T, Boolean> valoriInAlbero = new HashMap<>();//lista per i valori dei nodi dell'albero
 
     /**
      * @param info: l'informazione da inserire nel nodo
@@ -27,7 +27,7 @@ public class AlberoVP<T> implements Albero<T> {
 
     /**
      * Ritorna la nuova radice che sarà padre di quella precedente
-     * Si preservs il primo elemento (index 0) null della lista padri come padre della nuova radice
+     * Si preserva il primo elemento (index 0) null della lista padri come padre della nuova radice
      *
      * @param info: l'informazione da inserire in un nodo che sarà la nuova radice
      * @return nuvova radice
@@ -211,10 +211,11 @@ public class AlberoVP<T> implements Albero<T> {
         while(!stack.isEmpty()){
             NodoVP<T> nodoCorrente = stack.pop();
             ret.add(nodoCorrente);
+            List<NodoVP<T>> listaFigli = listaFigli(nodoCorrente);
             //for(NodoVP<T> figlio : listaFigli(nodoCorrente)){
             //      stack.push(figlio);}
-            for(int i = listaFigli(nodoCorrente).size() - 1; i >= 0; i--){
-                stack.push(listaFigli(nodoCorrente).get(i));
+            for(int i = listaFigli.size() - 1; i >= 0; i--){
+                stack.push(listaFigli.get(i));
             }
         }
         return ret;
@@ -249,6 +250,11 @@ public class AlberoVP<T> implements Albero<T> {
     public String stringaAlbero() {
         if (radice == null) return "[]";
         return stringaAlberoHelper(radice);
+    }
+
+    @Override
+    public String toString(){
+        return stringaAlbero();
     }
 
     private String stringaAlberoHelper(NodoVP<T> node) {
