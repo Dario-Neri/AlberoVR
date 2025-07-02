@@ -257,6 +257,12 @@ public class AlberoVP<T> implements Albero<T> {
         return stringaAlbero();
     }
 
+    /**
+     * Metodo ricorsivo che calcola la stringa che rappresenta il nodo passato in input.
+     *
+     * @param node
+     * @return Stringa dell'albero
+     */
     private String stringaAlberoHelper(NodoVP<T> node) {
         StringBuilder sb = new StringBuilder();
         sb.append(node.getValore()).append("[");

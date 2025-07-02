@@ -5,7 +5,7 @@ public class NodoVP<T> {
     private T valore;                 //variabile T generico per i valori dei nodi
 
     public NodoVP(T valore) {
-        if(this.valore == null){
+        if(valore == null){
             throw new IllegalArgumentException("il valore del nodo non può essere nullo");
         }
         this.valore = valore;
